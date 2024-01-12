@@ -9,23 +9,21 @@ def parse_args():
     return parser.parse_args()
 
 
-def copy_files(src, output):
+def copy_files_by_ext(src, output):
     for file in src.iterdir():
         if file.is_dir():
-            copy_files(file, output)
+            copy_files_by_ext(file, output)
         else:
             extension = file.suffix[1:]
             extension_dir = output / extension
             if not extension_dir.exists():
                 extension_dir.mkdir(parents=True, exist_ok=True)
-            dest_file_path = extension_dir / file.name
-            shutil.copy(file, dest_file_path)
-
+            output_file_path = extension_dir / file.name
+            shutil.copy(file, output_file_path)
 
 def main():
     args = parse_args()
-    copy_files(args.src, args.output)
-
+    copy_files_by_ext(args.src, args.output)
 
 if __name__ == "__main__":
     main()
