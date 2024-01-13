@@ -7,7 +7,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Copy and sort files by extention")
     parser.add_argument("-s", "--src", type=Path, required=True, help="Source dir path")
     parser.add_argument(
-        "-o", "--output", type=Path, default=Path("output"), help="Output dir path"
+        "-o", "--output", type=Path, default=Path("dist"), help="Output dir path"
     )
     return parser.parse_args()
 

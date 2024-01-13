@@ -1,5 +1,6 @@
 import turtle
 
+
 def koch_curve(t, order, size):
     if order == 0:
         t.forward(size)
@@ -14,7 +15,7 @@ def draw_koch_snowflake(order, size=400):
     window.bgcolor("white")
 
     t = turtle.Turtle()
-    t.speed(0)  
+    t.speed(0)
     t.penup()
 
     t.goto(-size / 2, size / 3)
@@ -22,8 +23,20 @@ def draw_koch_snowflake(order, size=400):
 
     for _ in range(3):
         koch_curve(t, order, size)
-        t.right(120) 
+        t.right(120)
 
     window.mainloop()
 
-draw_koch_snowflake(3)
+
+if __name__ == "__main__":
+    is_active = True
+    while is_active:
+        try:
+            recursion_level = int(input("Enter the level of recursion: "))
+            draw_koch_snowflake(order=recursion_level)
+            is_active = False
+        except ValueError:
+            print("Value not is integer!")
+        except KeyboardInterrupt:
+            print("\nHave a nice day")
+            is_active = False
